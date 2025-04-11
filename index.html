@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda Online</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #333;
+      color: white;
+      padding: 1em 0;
+      text-align: center;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 2em;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 2em;
+    }
+
+    .producto {
+      border: 1px solid #ccc;
+      padding: 1em;
+      margin-bottom: 1em;
+      border-radius: 5px;
+      display: flex;
+      gap: 1em;
+      align-items: center;
+    }
+
+    .producto img {
+      max-width: 150px;
+      height: auto;
+      border-radius: 5px;
+    }
+
+    .producto button {
+      background-color: #28a745;
+      color: white;
+      padding: 0.5em 1em;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    form input, form textarea {
+      display: block;
+      width: 100%;
+      margin-bottom: 1em;
+      padding: 0.5em;
+    }
+
+    form button {
+      background-color: #007bff;
+      color: white;
+      padding: 0.5em 1em;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    #carrito li {
+      margin-bottom: 0.5em;
+    }
+
+    .eliminar {
+      margin-left: 1em;
+      color: red;
+      cursor: pointer;
+    }
+
+    #filtro {
+      margin-bottom: 1em;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#productos">Productos</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="inicio">
+    <h1>Bienvenido a Nuestra Tienda</h1>
+    <p>Encuentra los mejores productos aqu¡.</p>
+  </section>
+
+  <section id="productos">
+    <h2>Electrodom‚sticos</h2>
+
+    <label for="filtro">Filtrar por tipo:</label>
+    <select id="filtro" onchange="filtrarProductos()">
+      <option value="todos">Todos</option>
+      <option value="Ventilador">Ventilador</option>
+      <option value="Licuadora">Licuadora</option>
+      <option value="Estufa">Estufa</option>
+      <option value="Freezer">Freezer</option>
+      <option value="Aire Acondicionado">Aire Acondicionado</option>
+      <option value="Refrigerador">Refrigerador</option>
+    </select>
+
+    <div id="lista-productos">
+      <div class="producto" data-tipo="Ventilador">
+        <img src="https://via.placeholder.com/150" alt="Ventilador">
+        <div>
+          <h3>Ventilador</h3>
+          <p>Ventilador de pedestal con m£ltiples velocidades.</p>
+          <button onclick="agregarAlCarrito('Ventilador')">Agregar al carrito</button>
+        </div>
+      </div>
+
+      <div class="producto" data-tipo="Licuadora">
+        <img src="https://via.placeholder.com/150" alt="Licuadora">
+        <div>
+          <h3>Licuadora</h3>
+          <p>Licuadora de alta potencia para preparar batidos.</p>
+          <button onclick="agregarAlCarrito('Licuadora')">Agregar al carrito</button>
+        </div>
+      </div>
+
+      <div class="producto" data-tipo="Estufa">
+        <img src="https://via.placeholder.com/150" alt="Estufa">
+        <div>
+          <h3>Estufa</h3>
+          <p>Estufa de gas con 4 quemadores y horno integrado.</p>
+          <button onclick="agregarAlCarrito('Estufa')">Agregar al carrito</button>
+        </div>
+      </div>
+
+      <div class="producto" data-tipo="Freezer">
+        <img src="https://via.placeholder.com/150" alt="Freezer">
+        <div>
+          <h3>Freezer</h3>
+          <p>Freezer horizontal de gran capacidad.</p>
+          <button onclick="agregarAlCarrito('Freezer')">Agregar al carrito</button>
+        </div>
+      </div>
+
+      <div class="producto" data-tipo="Aire Acondicionado">
+        <img src="https://via.placeholder.com/150" alt="Aire Acondicionado">
+        <div>
+          <h3>Aire Acondicionado</h3>
+          <p>Aire acondicionado split de bajo consumo.</p>
+          <button onclick="agregarAlCarrito('Aire Acondicionado')">Agregar al carrito</button>
+        </div>
+      </div>
+
+      <div class="producto" data-tipo="Refrigerador">
+        <img src="https://via.placeholder.com/150" alt="Refrigerador">
+        <div>
+          <h3>Refrigerador</h3>
+          <p>Refrigerador de doble puerta con sistema no frost.</p>
+          <button onclick="agregarAlCarrito('Refrigerador')">Agregar al carrito</button>
+        </div>
+      </div>
+    </div>
+
+    <h3>Carrito: (<span id="contador">0</span> productos)</h3>
+    <ul id="carrito"></ul>
+  </section>
+
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <form>
+      <input type="text" placeholder="Nombre" required>
+      <input type="email" placeholder="Correo" required>
+      <textarea placeholder="Mensaje" required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
+
+  <script>
+    const carrito = [];
+
+    function agregarAlCarrito(producto) {
+      carrito.push(producto);
+      actualizarCarrito();
+    }
+
+    function eliminarDelCarrito(index) {
+      carrito.splice(index, 1);
+      actualizarCarrito();
+    }
+
+    function actualizarCarrito() {
+      const lista = document.getElementById('carrito');
+      const contador = document.getElementById('contador');
+      lista.innerHTML = '';
+      contador.textContent = carrito.length;
+
+      carrito.forEach((item, index) => {
+        const li = document.createElement('li');
+        li.textContent = item;
+
+        const btnEliminar = document.createElement('span');
+        btnEliminar.textContent = '?';
+        btnEliminar.className = 'eliminar';
+        btnEliminar.onclick = () => eliminarDelCarrito(index);
+
+        li.appendChild(btnEliminar);
+        lista.appendChild(li);
+      });
+    }
+
+    function filtrarProductos() {
+      const filtro = document.getElementById('filtro').value;
+      const productos = document.querySelectorAll('.producto');
+      productos.forEach(producto => {
+        if (filtro === 'todos' || producto.dataset.tipo === filtro) {
+          producto.style.display = 'flex';
+        } else {
+          producto.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
