@@ -1,155 +1,1 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tienda Online</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="#inicio">Inicio</a></li>
-        <li><a href="#productos">Productos</a></li>
-        <li><a href="#contacto">Contacto</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <section id="inicio">
-    <h1>Bienvenido a Nuestra Tienda</h1>
-    <p>Encuentra los mejores productos aqu°.</p>
-  </section>
-
-  <section id="productos">
-    <h2>ElectrodomÇsticos</h2>
-
-    <label for="filtro">Filtrar por tipo:</label>
-    <select id="filtro" onchange="filtrarProductos()">
-      <option value="todos">Todos</option>
-      <option value="Ventilador">Ventilador</option>
-      <option value="Licuadora">Licuadora</option>
-      <option value="Estufa">Estufa</option>
-      <option value="Freezer">Freezer</option>
-      <option value="Aire Acondicionado">Aire Acondicionado</option>
-      <option value="Refrigerador">Refrigerador</option>
-    </select>
-
-    <div id="lista-productos">
-      <div class="producto" data-tipo="Ventilador">
-        <img src="imagenes/black-926117_1280.jpg" alt="Ventilador">
-        <div>
-          <h3>Ventilador</h3>
-          <p>Ventilador de pedestal con m£ltiples velocidades.</p>
-          <button onclick="agregarAlCarrito('Ventilador')">Agregar al carrito</button>
-        </div>
-      </div>
-
-      <div class="producto" data-tipo="Licuadora">
-        <img src="https://cdn.pixabay.com/photo/2020/02/08/18/19/blender-4830594_1280.jpg" alt="Licuadora">
-        <div>
-          <h3>Licuadora</h3>
-          <p>Licuadora de alta potencia para preparar batidos.</p>
-          <button onclick="agregarAlCarrito('Licuadora')">Agregar al carrito</button>
-        </div>
-      </div>
-
-      <div class="producto" data-tipo="Estufa">
-        <img src="https://cdn.pixabay.com/photo/2016/11/23/14/45/kitchen-1853481_1280.jpg" alt="Estufa">
-        <div>
-          <h3>Estufa</h3>
-          <p>Estufa de gas con 4 quemadores y horno integrado.</p>
-          <button onclick="agregarAlCarrito('Estufa')">Agregar al carrito</button>
-        </div>
-      </div>
-
-      <div class="producto" data-tipo="Freezer">
-        <img src="https://cdn.pixabay.com/photo/2017/01/10/03/57/freezer-1966707_1280.jpg" alt="Freezer">
-        <div>
-          <h3>Freezer</h3>
-          <p>Freezer horizontal de gran capacidad.</p>
-          <button onclick="agregarAlCarrito('Freezer')">Agregar al carrito</button>
-        </div>
-      </div>
-
-      <div class="producto" data-tipo="Aire Acondicionado">
-        <img src="https://cdn.pixabay.com/photo/2018/08/23/13/02/air-conditioner-3629392_1280.jpg" alt="Aire Acondicionado">
-        <div>
-          <h3>Aire Acondicionado</h3>
-          <p>Aire acondicionado split de bajo consumo.</p>
-          <button onclick="agregarAlCarrito('Aire Acondicionado')">Agregar al carrito</button>
-        </div>
-      </div>
-
-      <div class="producto" data-tipo="Refrigerador">
-        <img src="https://cdn.pixabay.com/photo/2014/12/21/23/28/refrigerator-576687_1280.png" alt="Refrigerador">
-        <div>
-          <h3>Refrigerador</h3>
-          <p>Refrigerador de doble puerta con sistema no frost.</p>
-          <button onclick="agregarAlCarrito('Refrigerador')">Agregar al carrito</button>
-        </div>
-      </div>
-    </div>
-
-    <h3>Carrito: (<span id="contador">0</span> productos)</h3>
-    <ul id="carrito"></ul>
-  </section>
-
-  <section id="contacto">
-    <h2>Contacto</h2>
-    <form>
-      <input type="text" placeholder="Nombre" required>
-      <input type="email" placeholder="Correo" required>
-      <textarea placeholder="Mensaje" required></textarea>
-      <button type="submit">Enviar</button>
-    </form>
-  </section>
-
-  <script>
-    const carrito = [];
-
-    function agregarAlCarrito(producto) {
-      carrito.push(producto);
-      actualizarCarrito();
-    }
-
-    function eliminarDelCarrito(index) {
-      carrito.splice(index, 1);
-      actualizarCarrito();
-    }
-
-    function actualizarCarrito() {
-      const lista = document.getElementById('carrito');
-      const contador = document.getElementById('contador');
-      lista.innerHTML = '';
-      contador.textContent = carrito.length;
-
-      carrito.forEach((item, index) => {
-        const li = document.createElement('li');
-        li.textContent = item;
-
-        const btnEliminar = document.createElement('span');
-        btnEliminar.textContent = '?';
-        btnEliminar.className = 'eliminar';
-        btnEliminar.onclick = () => eliminarDelCarrito(index);
-
-        li.appendChild(btnEliminar);
-        lista.appendChild(li);
-      });
-    }
-
-    function filtrarProductos() {
-      const filtro = document.getElementById('filtro').value;
-      const productos = document.querySelectorAll('.producto');
-      productos.forEach(producto => {
-        if (filtro === 'todos' || producto.dataset.tipo === filtro) {
-          producto.style.display = 'flex';
-        } else {
-          producto.style.display = 'none';
-        }
-      });
-    }
-  </script>
-</body>
-</html>
+Ôªø<!DOCTYPE html><html lang="es"><head>  <meta charset="UTF-8">  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>Tienda Online</title>  <link rel="stylesheet" href="style.css"></head><body>  <header>    <nav>      <ul>        <li><a href="#inicio">Inicio</a></li>        <li><a href="#productos">Productos</a></li>        <li><a href="#contacto">Contacto</a></li>      </ul>    </nav>  </header>  <section id="inicio">    <h1>Bienvenido a Nuestra Tienda</h1>    <p>Encuentra los mejores productos aqu√≠.</p>  </section>  <section id="productos">    <h2>Electrodom√©sticos</h2>    <label for="filtro">Filtrar por tipo:</label>    <select id="filtro" onchange="filtrarProductos()">      <option value="todos">Todos</option>      <option value="Ventilador">Ventilador</option>      <option value="Licuadora">Licuadora</option>      <option value="Estufa">Estufa</option>      <option value="Freezer">Freezer</option>      <option value="Aire Acondicionado">Aire Acondicionado</option>      <option value="Refrigerador">Refrigerador</option>    </select>    <div id="lista-productos">      <div class="producto" data-tipo="Ventilador">        <img src="imagenes/black-926117_1280.jpg" alt="Ventilador">        <div>          <h3>Ventilador</h3>          <p>Ventilador de pedestal con m√∫ltiples velocidades.</p>          <button onclick="agregarAlCarrito('Ventilador')">Agregar al carrito</button>        </div>      </div>      <div class="producto" data-tipo="Licuadora">        <img src="https://cdn.pixabay.com/photo/2020/02/08/18/19/blender-4830594_1280.jpg" alt="Licuadora">        <div>          <h3>Licuadora</h3>          <p>Licuadora de alta potencia para preparar batidos.</p>          <button onclick="agregarAlCarrito('Licuadora')">Agregar al carrito</button>        </div>      </div>      <div class="producto" data-tipo="Estufa">        <img src="https://cdn.pixabay.com/photo/2016/11/23/14/45/kitchen-1853481_1280.jpg" alt="Estufa">        <div>          <h3>Estufa</h3>          <p>Estufa de gas con 4 quemadores y horno integrado.</p>          <button onclick="agregarAlCarrito('Estufa')">Agregar al carrito</button>        </div>      </div>      <div class="producto" data-tipo="Freezer">        <img src="https://cdn.pixabay.com/photo/2017/01/10/03/57/freezer-1966707_1280.jpg" alt="Freezer">        <div>          <h3>Freezer</h3>          <p>Freezer horizontal de gran capacidad.</p>          <button onclick="agregarAlCarrito('Freezer')">Agregar al carrito</button>        </div>      </div>      <div class="producto" data-tipo="Aire Acondicionado">        <img src="https://cdn.pixabay.com/photo/2018/08/23/13/02/air-conditioner-3629392_1280.jpg" alt="Aire Acondicionado">        <div>          <h3>Aire Acondicionado</h3>          <p>Aire acondicionado split de bajo consumo.</p>          <button onclick="agregarAlCarrito('Aire Acondicionado')">Agregar al carrito</button>        </div>      </div>      <div class="producto" data-tipo="Refrigerador">        <img src="https://cdn.pixabay.com/photo/2014/12/21/23/28/refrigerator-576687_1280.png" alt="Refrigerador">        <div>          <h3>Refrigerador</h3>          <p>Refrigerador de doble puerta con sistema no frost.</p>          <button onclick="agregarAlCarrito('Refrigerador')">Agregar al carrito</button>        </div>      </div>    </div>    <h3>Carrito: (<span id="contador">0</span> productos)</h3>    <ul id="carrito"></ul>  </section>  <section id="contacto">    <h2>Contacto</h2>    <form>      <input type="text" placeholder="Nombre" required>      <input type="email" placeholder="Correo" required>      <textarea placeholder="Mensaje" required></textarea>      <button type="submit">Enviar</button>    </form>  </section>  <script>    const carrito = [];    function agregarAlCarrito(producto) {      carrito.push(producto);      actualizarCarrito();    }    function eliminarDelCarrito(index) {      carrito.splice(index, 1);      actualizarCarrito();    }    function actualizarCarrito() {      const lista = document.getElementById('carrito');      const contador = document.getElementById('contador');      lista.innerHTML = '';      contador.textContent = carrito.length;      carrito.forEach((item, index) => {        const li = document.createElement('li');        li.textContent = item;        const btnEliminar = document.createElement('span');        btnEliminar.textContent = '‚úñ';        btnEliminar.className = 'eliminar';        btnEliminar.onclick = () => eliminarDelCarrito(index);        li.appendChild(btnEliminar);        lista.appendChild(li);      });    }    function filtrarProductos() {      const filtro = document.getElementById('filtro').value;      const productos = document.querySelectorAll('.producto');      productos.forEach(producto => {        if (filtro === 'todos' || producto.dataset.tipo === filtro) {          producto.style.display = 'flex';        } else {          producto.style.display = 'none';        }      });    }  </script></body></html>
